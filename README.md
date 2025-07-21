@@ -1,4 +1,4 @@
-# 📱 Messaging System MVP
+# Bulk SMS Messaging System 
 
 A complete PHP messaging system with Slim Framework, MySQL database, and **TalkSasa SMS API** integration featuring user authentication, bulk SMS sending, and a responsive web dashboard.
 
