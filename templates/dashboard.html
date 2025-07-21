@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messaging System Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div id="app">
+        <!-- Login Form -->
+        <div id="loginForm" class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-full space-y-8">
+                <div>
+                    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                        Sign in to your account
+                    </h2>
+                </div>
+                <form class="mt-8 space-y-6" onsubmit="login(event)">
+                    <div class="rounded-md shadow-sm -space-y-px">
+                        <div>
+                            <input id="username" name="username" type="text" required
+                                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                placeholder="Username">
+                        </div>
+                        <div>
+                            <input id="password" name="password" type="password" required
+                                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                placeholder="Password">
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit"
+                            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Sign in
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" onclick="showRegisterForm()" class="text-indigo-600 hover:text-indigo-500">
+                            Don't have an account? Register
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerForm" class="hidden min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-full space-y-8">
+                <div>
+                    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                        Create your account
+                    </h2>
+                </div>
+                <form class="mt-8 space-y-6" onsubmit="register(event)">
+                    <div class="rounded-md shadow-sm -space-y-px">
+                        <div>
+                            <input id="regUsername" name="username" type="text" required
+                                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                placeholder="Username">
+                        </div>
+                        <div>
+                            <input id="regEmail" name="email" type="email" required
+                                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                placeholder="Email">
+                        </div>
+                        <div>
+                            <input id="regPassword" name="password" type="password" required
+                                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                placeholder="Password">
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit"
+                            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Register
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" onclick="showLoginForm()" class="text-indigo-600 hover:text-indigo-500">
+                            Already have an account? Sign in
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="dashboard" class="hidden">
+            <!-- Navigation -->
+            <nav class="bg-indigo-600 shadow-lg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex items-center">
+                            <h1 class="text-white text-xl font-bold">Messaging System</h1>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-white" id="userInfo"></span>
+                            <button onclick="logout()" class="text-white hover:text-gray-200">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                <!-- Tabs -->
+                <div class="border-b border-gray-200 mb-6">
+                    <nav class="-mb-px flex">
+                        <button onclick="showTab('sendMessage')" class="tab-button py-2 px-4 border-b-2 border-indigo-500 text-indigo-600 font-medium">
+                            Send Message
+                        </button>
+                        <button onclick="showTab('contacts')" class="tab-button py-2 px-4 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium ml-8">
+                            Contacts
+                        </button>
+                        <button onclick="showTab('history')" class="tab-button py-2 px-4 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium ml-8">
+                            Message History
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Send Message Tab -->
+                <div id="sendMessage" class="tab-content">
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <h2 class="text-lg font-medium text-gray-900 mb-4">Send SMS Message</h2>
+                        
+                        <!-- Message Type Toggle -->
+                        <div class="mb-4">
+                            <div class="flex space-x-4">
+                                <label class="flex items-center">
+                                    <input type="radio" name="messageType" value="single" checked onchange="toggleMessageType()" class="mr-2">
+                                    <span>Single Message</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="messageType" value="bulk" onchange="toggleMessageType()" class="mr-2">
+                                    <span>Bulk Message</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Single Message Form -->
+                        <div id="singleMessageForm">
+                            <form onsubmit="sendSingleMessage(event)" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                    <input type="tel" id="singlePhone" required
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                        placeholder="+1234567890">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Message</label>
+                                    <textarea id="singleMessage" required rows="4"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                        placeholder="Enter your message here..."></textarea>
+                                </div>
+                                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Bulk Message Form -->
+                        <div id="bulkMessageForm" class="hidden">
+                            <form onsubmit="sendBulkMessage(event)" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Recipients</label>
+                                    <div class="mt-1 flex space-x-2">
+                                        <textarea id="bulkPhones" rows="4" placeholder="Enter phone numbers (one per line or comma-separated)"
+                                            class="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                                        <button type="button" onclick="loadContactsForBulk()" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">
+                                            Load Contacts
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Message</label>
+                                    <textarea id="bulkMessage" required rows="4"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                        placeholder="Enter your message here..."></textarea>
+                                </div>
+                                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+                                    Send Bulk Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacts Tab -->
+                <div id="contacts" class="tab-content hidden">
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-medium text-gray-900">Contacts</h2>
+                            <div class="space-x-2">
+                                <button onclick="showAddContactForm()" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+                                    Add Contact
+                                </button>
+                                <button onclick="showUploadForm()" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                    Upload CSV
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Add Contact Form -->
+                        <div id="addContactForm" class="hidden mb-4 p-4 border border-gray-200 rounded-md">
+                            <form onsubmit="addContact(event)" class="space-y-2">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <input type="text" id="contactName" placeholder="Name"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                    </div>
+                                    <div>
+                                        <input type="tel" id="contactPhone" required placeholder="Phone Number"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+                                        Add Contact
+                                    </button>
+                                    <button type="button" onclick="hideAddContactForm()" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Upload Form -->
+                        <div id="uploadForm" class="hidden mb-4 p-4 border border-gray-200 rounded-md">
+                            <form onsubmit="uploadContacts(event)" class="space-y-2">
+                                <div>
+                                    <input type="file" id="csvFile" accept=".csv" required
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                    <p class="text-sm text-gray-500 mt-1">Upload a CSV file with 'name' and 'phone_number' columns</p>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                        Upload
+                                    </button>
+                                    <button type="button" onclick="hideUploadForm()" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Contacts List -->
+                        <div id="contactsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <!-- Contacts will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Tab -->
+                <div id="history" class="tab-content hidden">
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <h2 class="text-lg font-medium text-gray-900 mb-4">Message History</h2>
+                        <div id="messageHistory">
+                            <!-- Message history will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="fixed top-4 right-4 z-50 hidden">
+        <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-w-sm">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <i id="toastIcon" class="fas fa-info-circle text-blue-500"></i>
+                </div>
+                <div class="ml-3">
+                    <p id="toastMessage" class="text-sm text-gray-700"></p>
+                </div>
+                <div class="ml-4 flex-shrink-0">
+                    <button onclick="hideToast()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

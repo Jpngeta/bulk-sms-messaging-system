@@ -1,0 +1,38 @@
+# Environment variables
+.env
+
+# Dependencies
+/vendor/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+error.log
+access.log
+
+# Cache
+/cache/
+/tmp/
+
+# Uploads
+/uploads/
+
+# Database
+*.sql.backup
+*.db
+
+# Composer
+composer.phar
+
+# Node modules (if any)
+node_modules/
+
+# Claude AI logs
+claude.log
