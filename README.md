@@ -2,7 +2,7 @@
 
 A complete PHP messaging system with Slim Framework, MySQL database, and **TalkSasa SMS API** integration featuring user authentication, bulk SMS sending, and a responsive web dashboard.
 
-## 🚀 Features
+## Features
 
 - **User Authentication**: JWT token-based authentication with 24-hour expiration
 - **Single & Bulk SMS**: Send messages to individual recipients or up to 100 recipients per batch
@@ -12,7 +12,7 @@ A complete PHP messaging system with Slim Framework, MySQL database, and **TalkS
 - **Rate Limiting**: Built-in delays for bulk messaging to respect API limits
 - **Multiple SMS Providers**: Currently integrated with TalkSasa SMS API
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Backend**: PHP 8.4+ with Slim Framework 4
 - **Database**: MySQL 5.7+
@@ -20,14 +20,14 @@ A complete PHP messaging system with Slim Framework, MySQL database, and **TalkS
 - **SMS Provider**: TalkSasa SMS API
 - **Authentication**: JWT tokens with Firebase JWT library
 
-## 📋 Prerequisites
+## Prerequisites
 
 - PHP 8.4 or higher
 - MySQL 5.7 or higher (via XAMPP recommended)
 - Composer
 - TalkSasa SMS API account with API credentials
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone and Install Dependencies
 ```bash
@@ -71,7 +71,7 @@ php -S localhost:8000 -t public
 ### 5. Access Application
 Open `http://localhost:8000` in your browser
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - User registration
@@ -90,16 +90,16 @@ Open `http://localhost:8000` in your browser
 - `POST /api/contacts/upload` - Upload contacts via CSV
 - `DELETE /api/contacts/{id}` - Delete contact
 
-## 💰 SMS Pricing
+##  SMS Pricing
 
 **TalkSasa SMS Costs:**
 - **Kenya**: KES 1.0 per SMS
 - **International**: Varies by destination
 - **Bulk discounts**: Available for high-volume accounts
 
-## 📊 Current Status
+##  Current Status
 
-### ✅ Working Features
+###  Working Features
 - **User Authentication**: Complete JWT-based auth system
 - **Single SMS**: Individual message sending with delivery confirmation
 - **Bulk SMS**: Up to 100 recipients with individual tracking
@@ -108,14 +108,14 @@ Open `http://localhost:8000` in your browser
 - **TalkSasa Integration**: Full API integration with retry mechanism
 - **Error Handling**: Comprehensive error logging and user feedback
 
-### 📈 Recent Updates
+###  Recent Updates
 - **Migration from Twilio to TalkSasa** (July 2025)
 - **Authentication Bearer tokens** implementation
 - **Retry mechanism** for failed API calls
 - **Improved error handling** with detailed logging
 - **Phone number validation** with international format support
 
-## 🔧 Development
+## Development
 
 ### Project Structure
 ```
@@ -145,7 +145,7 @@ messaging-system/
 3. Define routes in `public/index.php`
 4. Update frontend in `templates/dashboard.html`
 
-## 🛠 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -165,7 +165,7 @@ messaging-system/
 - Verify JWT_SECRET is set in `.env`
 - Check token expiration (24 hours)
 
-## 📱 SMS Provider Details
+##  SMS Provider Details
 
 **TalkSasa SMS API:**
 - **Endpoint**: `https://bulksms.talksasa.com/api/v3/sms/send`
@@ -174,7 +174,7 @@ messaging-system/
 - **Delivery Reports**: Real-time status updates
 - **Rate Limits**: Built-in 100ms delays between bulk sends
 
-## 🔐 Security Features
+##  Security Features
 
 - JWT token authentication with expiration
 - Password hashing using PHP's `password_hash()`
@@ -182,14 +182,14 @@ messaging-system/
 - Input validation and sanitization
 - API rate limiting and error handling
 
-## 📈 Performance
+##  Performance
 
 - **Database**: Optimized with indexes on frequently queried columns
 - **API Calls**: Retry mechanism with exponential backoff
 - **Bulk Operations**: Efficient individual sends with rate limiting
 - **Error Handling**: Graceful degradation with detailed logging
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create feature branch (`git checkout -b feature/new-feature`)
@@ -198,7 +198,7 @@ messaging-system/
 5. Create Pull Request
 
 
-## 🆘 Support
+##  Support
 
 For issues and questions:
 1. Check the troubleshooting section above
